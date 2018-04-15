@@ -5,6 +5,7 @@
 public class Projectile : MonoBehaviour {
 
 	[SerializeField] float speed = 5f;
+	[SerializeField] float damage = 5f;
 	bool shotToRight;
 	Rigidbody2D rb;
 
@@ -30,6 +31,13 @@ public class Projectile : MonoBehaviour {
 
 	void OnBecameInvisible() {
 		Destroy(gameObject);
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (LayerMask.LayerToName(other.gameObject.layer) == "Enemies") {
+			other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+			Destroy(gameObject);
+		}
 	}
 	
 }

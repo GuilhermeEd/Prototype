@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
   [SerializeField] float health = 100f;
   [SerializeField] float maxHealth = 100f;
   Animator anim;
+  float dyingInterval = 1f;
 
   void Start()
   {
@@ -48,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
   void StartDeathSequence()
   {
     anim.SetBool("isDying", true);
-		Invoke("Die", 1f);
+		Invoke("Die", dyingInterval);
   }
 
 	void Die()

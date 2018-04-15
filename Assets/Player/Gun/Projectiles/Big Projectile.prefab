@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61140394622214542}
   - component: {fileID: 50226862135080810}
   - component: {fileID: 114662270506181926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Big Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  damage: 5
 --- !u!212 &212368641651440318
 SpriteRenderer:
   m_ObjectHideFlags: 1

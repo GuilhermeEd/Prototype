@@ -366,9 +366,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330f96fb652cab14db60d679158c7d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallProjectile: {fileID: 0}
-  mediumProjectile: {fileID: 0}
-  bigProjectile: {fileID: 0}
+  smallProjectile: {fileID: 1709234203403196, guid: 845e10adc647b7e4988ad5dc7c2ee7c4,
+    type: 2}
+  mediumProjectile: {fileID: 1709234203403196, guid: ff1ea61d7f4986a4ea1518f6a635b711,
+    type: 2}
+  bigProjectile: {fileID: 1709234203403196, guid: 5eada888a22af114ca1399cf5b07d350,
+    type: 2}
   chargeSpeed: 3
   chargeTime: 0
 --- !u!124 &124300144246110208

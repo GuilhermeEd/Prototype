@@ -4,7 +4,7 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour {
 
-	[SerializeField] float speed = 18f;
+	[SerializeField] float speed = 5f;
 	bool shotToRight;
 	Rigidbody2D rb;
 

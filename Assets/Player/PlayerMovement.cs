@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour {
   [SerializeField] Transform groundCheck;
   [SerializeField] Transform wallCheck;
   Rigidbody2D rb;
-  BoxCollider2D col;
   Animator anim;
   bool isGrounded = false;
   bool isFacingWall = false;
@@ -22,7 +21,6 @@ public class PlayerMovement : MonoBehaviour {
 
   void Start() {
     rb = GetComponent<Rigidbody2D>();
-    col = GetComponent<BoxCollider2D>();
     anim = GetComponent<Animator>();
   }
 
@@ -40,8 +38,8 @@ public class PlayerMovement : MonoBehaviour {
     float xOffset = h * speed;
     float newXVelocity = Mathf.Clamp(rb.velocity.x + xOffset, -maxSpeed, maxSpeed);
     rb.velocity = new Vector2( newXVelocity, rb.velocity.y);
-    if (rb.velocity.x > 2f && !isFacingRight) { Flip("right"); }
-    if (rb.velocity.x < -2f && isFacingRight) { Flip("left"); }
+    if (rb.velocity.x > 1f && h > 0 && !isFacingRight && !isWallSliding) { Flip("right"); }
+    if (rb.velocity.x < -1f && h < 0 && isFacingRight && !isWallSliding) { Flip("left"); }
     if (h == 0f) {
       anim.SetBool("isMoving", false);
     } else {
@@ -50,7 +48,6 @@ public class PlayerMovement : MonoBehaviour {
   }
 
   void HandleJump() {
-    float h = CrossPlatformInputManager.GetAxis("Horizontal");
     if(CrossPlatformInputManager.GetButtonDown("Jump") && isGrounded) {
       anim.SetBool("isGrounded", false);
       rb.AddForce(Vector2.up * jumpForce);
@@ -68,7 +65,7 @@ public class PlayerMovement : MonoBehaviour {
         rb.AddForce(new Vector2(-0.5f, 1f) * jumpForce);
       }
     }
-     if(isWallSliding && isGrounded && CrossPlatformInputManager.GetButtonDown("Jump")) {
+     if(isWallSliding && isGrounded && isFacingWall && CrossPlatformInputManager.GetButtonDown("Jump")) {
       Flip();
     }
   }

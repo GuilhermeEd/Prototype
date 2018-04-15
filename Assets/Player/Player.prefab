@@ -339,6 +339,8 @@ MonoBehaviour:
   speed: 2
   maxSpeed: 5
   jumpForce: 400
+  dashForce: 5
+  maxDashTime: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 256

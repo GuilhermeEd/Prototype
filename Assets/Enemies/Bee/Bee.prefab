@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   damage: 10
+  damageColorTime: 0.2
   deathVFX: {fileID: 1929528111358732, guid: b01cd5384957691499f00274a7453b62, type: 2}
 --- !u!114 &114997100541786180
 MonoBehaviour:

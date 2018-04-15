@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Enemy : MonoBehaviour
 {
   [SerializeField] float health = 10f;
   [SerializeField] float damage = 10f;
-	[SerializeField] GameObject deathVFX;
-  Animator anim;
-	float dyingInterval = 1f;
+  [SerializeField] float damageColorTime = 0.2f;
+  [SerializeField] GameObject deathVFX;
+
+  SpriteRenderer sprite;
+  AudioClip damageSFX;
 
   void Start()
   {
-    anim = GetComponent<Animator>();
+    sprite = GetComponent<SpriteRenderer>();
   }
 
   void OnTriggerEnter2D(Collider2D other)
@@ -22,10 +26,12 @@ public class Enemy : MonoBehaviour
     {
       DealDamage(other.gameObject);
     }
-
     if (LayerMask.LayerToName(other.gameObject.layer) == "Player Attack")
     {
-      print("Take Damage Enemy");
+      
+      PlayerAttack attack = other.gameObject.GetComponent<PlayerAttack>();
+      AudioSource.PlayClipAtPoint(attack.damageSFX, transform.position);
+			TakeDamage(attack.damage);
     }
   }
 
@@ -36,14 +42,21 @@ public class Enemy : MonoBehaviour
 
   public void TakeDamage(float amount)
   {
-		health -= amount;
-		if (health <= 0f) { StartDeathSequence(); }
+    health -= amount;
+    sprite.color = Color.red;
+    Invoke("ResetSpriteColor", damageColorTime);
+    if (health <= 0f) { StartDeathSequence(); }
+  }
+
+  void ResetSpriteColor()
+  {
+    sprite.color = Color.white;
   }
 
   void StartDeathSequence()
   {
-		Instantiate(deathVFX, transform.position, Quaternion.identity);
-		Destroy(gameObject);
+    Instantiate(deathVFX, transform.position, Quaternion.identity);
+    Destroy(gameObject);
   }
 
 }

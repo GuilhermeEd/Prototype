@@ -402,6 +402,7 @@ MonoBehaviour:
     m_Bits: 256
   groundCheck: {fileID: 4265797270092032}
   wallCheck: {fileID: 4109652176646148}
+  isFacingRight: 1
 --- !u!114 &114395225481078722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,6 +446,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+  damageColorTime: 0.3
+  damagePushForce: 200
+  invencibilityTime: 1.5
 --- !u!124 &124300144246110208
 Behaviour:
   m_ObjectHideFlags: 1

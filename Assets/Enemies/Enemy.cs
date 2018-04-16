@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     }
     if (LayerMask.LayerToName(other.gameObject.layer) == "Player Attack")
     {
-      
+
       PlayerAttack attack = other.gameObject.GetComponent<PlayerAttack>();
       AudioSource.PlayClipAtPoint(attack.damageSFX, transform.position);
 			TakeDamage(attack.damage);
@@ -44,8 +44,8 @@ public class Enemy : MonoBehaviour
   {
     health -= amount;
     sprite.color = Color.red;
-    Invoke("ResetSpriteColor", damageColorTime);
     if (health <= 0f) { StartDeathSequence(); }
+    Invoke("ResetSpriteColor", damageColorTime);
   }
 
   void ResetSpriteColor()

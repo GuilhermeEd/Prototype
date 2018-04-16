@@ -15,14 +15,14 @@ public class PlayerMovement : MonoBehaviour
   [SerializeField] LayerMask groundLayer;
   [SerializeField] Transform groundCheck;
   [SerializeField] Transform wallCheck;
-  Rigidbody2D rb;
-  Animator anim;
+  public bool isFacingRight = true;
   bool isGrounded = false;
   bool isFacingWall = false;
-  bool isFacingRight = true;
   bool isWallSliding = false;
   bool isDashing = false;
   float timeDashing = 0f;
+  Rigidbody2D rb;
+  Animator anim;
 
 
   void Start()

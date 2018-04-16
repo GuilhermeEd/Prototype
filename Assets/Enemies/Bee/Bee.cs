@@ -22,12 +22,12 @@ public class Bee : MonoBehaviour
       Vector3 heading = target.position - transform.position;
       Vector3 destination = transform.position + (heading / heading.magnitude) * stepDistance;
       if (heading.x > 0) { Flip("left"); } else { Flip("right"); }
+      yield return new WaitForSeconds(stepDelay);
       while (Vector3.Distance(transform.position, destination) > 0.1f)
       {
         transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, smoothTime);
         yield return new WaitForEndOfFrame();
       }
-      yield return new WaitForSeconds(stepDelay);
     }
 
 
